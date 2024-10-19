@@ -1,6 +1,6 @@
 <?php
 
-namespace JBtronics\PDFox\Core\Objects;
+namespace JBtronics\PDFox\Tests\Core\Objects;
 
 use Jbtronics\PDFox\Core\Objects\PDFNull;
 use PHPUnit\Framework\TestCase;

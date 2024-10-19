@@ -61,13 +61,17 @@ class PDFArray extends AbstractPDFObject implements \Countable, \ArrayAccess, \I
      */
     public function set(int $index, PDFObjectInterface $element): void
     {
+        //Ensure that we do not create holes in the indices
+        if ($index < 0 || $index >= count($this->elements)) {
+            throw new \InvalidArgumentException("Index out of bounds.");
+        }
         $this->elements[$index] = $element;
     }
 
     public function toBytes(): string
     {
-        return "[ ".implode(' ',
-                array_map(fn(AbstractPDFObject $element) => $element->toBytes(), $this->elements))." ]";
+        return "[".implode(' ',
+                array_map(fn(AbstractPDFObject $element) => $element->toBytes(), $this->elements))."]";
     }
 
     public function count(): int
